@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+< đầu >
+<meta  charset = " UTF-8 " >
+<title > Tiêu đề </title> >
+<link rel = " stylesheet " href = " https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css " Integrity = " sha384-Gn5384xqQ1aoWXA + 058RXPxPg6fy4IWvTNh0E263Xm " crossorig = " ẩn danh " >
+
+
+
+
+</head>
+
+<body>
+
+<h1style = " color : blue " align = " center " > =========== Ứng dụng Quản lý Sản phẩm ====================
+<inputi  id = " newProduct " type = " text " >
+<button  onclick = " createProduct () " > Tạo sản phẩm </ button >
+<input id = " search " placeholder = " Tìm kiếm Sản phẩm .... " type = " text " oninput = " actionSearch () " >
+
+<span id = " validate " > </ span >
+<table  border = " 1 " style = " width: 100%; text-align: center " >
+<th > STT </th>
+<th > Đặt tên sản phẩm </th>
+<th> Chỉnh sửa </th>
+<th > Xóa </th>
+    <tbody id = " drawTable " > </tbody> >
+
+</table> >
+    <script >
+let  listProduct  =  [ 'Vịt' , 'Gà' , 'Chó' ]
+let  listSearch  =  [ ]
+
+function  showListProduct ( ) {
+let  drawTable = "" ;
+for  ( let  i  =  0 ; i < listProduct . length ; i ++ ) {
+cho  j  =  i + 1  ;
+drawTable  + = `<tr>
+    <td> $ { i } </td>
+    <td> $ { listProduct [ i ] } </td>
+    <td> <button style = "background: hotpink; color: white; border-radius: 20%" onclick = "updateProduct ( $ { i } )"> Chỉnh sửa </button> </td>
+    <td> <button style = "background: black; color: white; border-radius: 20%" onclick = "deleteProduct ( $ { i } )"> Xóa </button> </b> </td>
+</tr> '
+}
+tài liệu . getElementById ( 'drawTable' ) . innerHTML  =  drawTable ;
+}
+showListProduct ( ) ;
+function  createProduct ( ) {
+let  newProduct  =  tài liệu . getElementById ( 'Sản phẩm mới' ) . giá trị ;
+if  ( newProduct . trim ( ) === '' ) {
+tài liệu . getElementById ( 'xác thực' ) . innerHTML = '<span style = "color: darkred"> bắt buộc! Vui lòng thử lại! </span> '
+} khác  {
+listProduct . đẩy ( Sản phẩm mới ) ;
+tài liệu . getElementById ( 'xác thực' ) . innerHTML = '<span style = "color: blue"> Tạo thành công !! </span>'
+showListProduct ( ) ;
+}
+}
+function  updateProduct ( id ) {
+let  editProduct  =  prompt ( 'Nhập sản phẩm cập nhật' , listProduct [ id ] )
+if  ( editProduct . trim ( ) === '' ) {
+tài liệu . getElementById ( 'xác thực' ) . innerHTML = '<span style = "color: darkgray"> Tên là bắt buộc! Vui lòng thử lại! </span> '
+} khác  {
+listProduct [ id ] = editProduct ;
+tài liệu . getElementById ( 'xác thực' ) . innerHTML = '<span style = "color: darkgray"> Cập nhật thành công !!! </span>'
+showListProduct ( ) ;
+}
+}
+function  deleteProduct ( id ) {
+listProduct . mối nối ( id , 1 )
+
+showListProduct ( ) ;
+}
+function  showListSearch ( ) {
+let  drawTable = '' ;
+let  search  =  document . getElementById ( 'tìm kiếm' ) . giá trị ;
+for  ( let  i = 0 ; i <  listSearch . length ; i ++ ) {
+cho  j = i + 1 ;
+drawTable  + = `<tr>
+    <td> $ { j } </td>
+    <td> $ { listProduct [ i ] } </td>
+    <td> <button style = "background: hotpink; color: white; border-radius: 20%" onclick = "updateProduct ( $ { i } )"> Chỉnh sửa </button> </td>
+    <td> <button style = "background: black; color: white; border-radius: 20%" onclick = "deleteProduct ( $ { i } )" id = "myBtn"> Delete </button> </td>
+</tr>'
+}
+tài liệu . getElementById ( 'drawTable' ) . innerHTML = drawTable ;
+}
+function  actionSearch ( )  {
+let  search  =  document . getElementById ( 'tìm kiếm' ) . giá trị ;
+listSearch  =  [ ] ;
+if  ( search . trim ( ) === '' ) {
+showListProduct ( ) ;
+trở lại ;
+}
+for  ( let  i = 0 ; i < listProduct . length ; i ++ ) {
+if  ( search . toLowerCase ( ) === listProduct [ i ] . toLowerCase ( ) . slice ( 0 , search . length ) ) {
+danh sách Tìm kiếm . push ( listProduct [ i ] )
+}
+}
+showListSearch ( ) ;
+
+}
+
+
+</script >
+
+</body>
+</html>
